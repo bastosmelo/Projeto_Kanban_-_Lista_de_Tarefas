@@ -1,8 +1,15 @@
-body {
+/* Estilos Globais */
+html, body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: lightgray;
+    overflow-x: hidden;
+}
+  
+/* Garantir que elementos se ajustem à largura da viewport */
+* {
+    box-sizing: border-box;
 }
 
 .header {
@@ -40,18 +47,19 @@ body {
 .kanban-board {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap; /* Permite quebra de linha para as colunas */
 }
 
 .column {
-    flex: 1;
-    border-radius: 5px;
-    padding: 10px;
+    flex: 1 1 calc(25% - 20px); /* Cada coluna ocupa 25% da largura com gap de 20px */
+    min-width: 250px; /* Garante um tamanho mínimo para não ficar muito pequeno */
 }
 
 .column h2 {
     margin-top: 0;
     text-align: center;
     color: #333;
+    font-size: 1.2rem; /* Ajusta o tamanho do texto dos títulos */
 }
 
 .task-list {
@@ -65,6 +73,7 @@ body {
     margin-bottom: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     cursor: move;
+    font-size: 0.9rem; /* Fonte menor em telas pequenas */
 }
 
 /* Cores específicas para cada coluna */
@@ -126,26 +135,76 @@ body {
     align-items: center;
 }
 
-
-/* Rodapé fixo ao final da página */
-.footer {
+/* Footer */
+footer {
+    width: 100%;
     text-align: center;
     padding: 10px;
     background-color: #343a40;
     color: lightgray;
-    width: 100%;
     position: relative;
     margin-top: auto; /* Empurra o rodapé para o final da página */
+    bottom: 0;
 }
 
-.social-links {
-    margin-bottom: 10px;
+/* Estilo para ícones sociais */
+.social-icons {
+text-align: center;
+margin-bottom: 20px;
 }
 
-.logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #333;
-    margin: 0 5px;
+.social-icons img {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border: 1px solid #333;
+margin: 0 5px;
+cursor: pointer;
+}
+
+/* Responsividade para Footer e Ícones Sociais */
+@media (max-width: 768px) {
+.social-icons img {
+    width: 25px;
+    height: 25px;
+    }
+
+footer p {
+    font-size: 0.9em;
+    }
+}
+
+/* Responsividade para as colunas do Kanban */
+@media (max-width: 768px) {
+.kanban-board {
+    flex-direction: column; /* As colunas ficam uma abaixo da outra */
+    }
+
+.column {
+    flex: 1 1 100%; /* Cada coluna ocupa 100% da largura */
+    margin-bottom: 20px; /* Espaçamento entre as colunas */
+    }
+
+#taskInput {
+    font-size: 16px; /* Fonte maior para dispositivos móveis */
+    }
+
+#addTaskBtn {
+    padding: 10px; /* Botão maior */
+    }
+}
+
+@media (max-width: 480px) {
+h1 {
+    font-size: 1.5rem; /* Reduz tamanho do título */
+    }
+
+.social-icons img {
+    width: 20px;
+    height: 20px;
+    }
+
+footer p {
+    font-size: 0.8em; /* Texto menor no rodapé */
+    }
 }
